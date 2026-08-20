@@ -1,0 +1,61 @@
+<ui:composition template="/templates/layout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="jakarta.faces.facelets"
+                xmlns:h="jakarta.faces.html"
+                xmlns:f="jakarta.faces.core">
+
+    <ui:define name="title">Form Sinh Viên</ui:define>
+
+    <ui:define name="content">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0">Thông Tin Sinh Viên</h4>
+                    </div>
+                    <div class="card-body">
+                        <h:messages globalOnly="true" class="alert alert-success" />
+                        <h:form>
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Mã SV:</label>
+                                <h:inputText id="ma" value="#{sinhVienBean.sinhVien.maSinhVien}" required="true" requiredMessage="Mã sinh viên bắt buộc nhập" class="form-control" />
+                                <h:message for="ma" class="text-danger small" />
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Họ tên:</label>
+                                <h:inputText id="hoten" value="#{sinhVienBean.sinhVien.hoTen}" class="form-control" />
+                                <h:message for="hoten" class="text-danger small" />
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Email:</label>
+                                <h:inputText id="email" value="#{sinhVienBean.sinhVien.email}" class="form-control" />
+                                <h:message for="email" class="text-danger small" />
+                            </div>
+
+                            <!-- TRƯỜNG LỚP DÙNG SELECT ONEMENU (BÀI 12) -->
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Lớp:</label>
+                                <h:selectOneMenu id="lop" value="#{sinhVienBean.sinhVien.lop}" class="form-select" required="true" requiredMessage="Vui lòng chọn lớp học">
+                                    <f:selectItem itemValue="" itemLabel="-- Chọn lớp học --" />
+                                    <f:selectItems value="#{sinhVienBean.dsLop}" />
+                                </h:selectOneMenu>
+                                <h:message for="lop" class="text-danger small" />
+                            </div>
+
+                            <div class="d-flex justify-content-between mt-4">
+                                <!-- Nút lưu khi thêm mới -->
+                                <h:commandButton value="Lưu sinh viên" action="#{sinhVienBean.save}" class="btn btn-primary" />
+
+                                <!-- Nút cập nhật khi sửa (Bài 9) -->
+                                <h:commandButton value="Cập nhật" action="#{sinhVienBean.update}" class="btn btn-success" />
+                            </div>
+                        </h:form>
+                    </div>
+                    <div class="card-footer text-center bg-white">
+                        <h:link outcome="sinhvien-list" value="Xem danh sách" class="text-decoration-none" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

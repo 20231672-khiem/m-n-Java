@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
+<h:head>
+    <title>Danh sách Sách</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+</h:head>
+<h:body class="bg-light">
+    <div class="container mt-5">
+        <h2 class="text-center text-primary mb-4">Quản Lý Thư Viện Sách</h2>
+
+        <h:form>
+            <div class="table-responsive shadow-sm rounded bg-white">
+                <h:dataTable value="#{sachBean.dsSach}" var="s" class="table table-hover table-bordered mb-0">
+                    <h:column><f:facet name="header">ID</f:facet>#{s.id}</h:column>
+                    <h:column><f:facet name="header">Tên Sách</f:facet><span class="fw-bold">#{s.tenSach}</span></h:column>
+                    <h:column><f:facet name="header">Tác Giả</f:facet>#{s.tacGia}</h:column>
+                    <h:column><f:facet name="header">Năm XB</f:facet>
+                        <span class="badge bg-warning text-dark">#{s.namXuatBan}</span>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Thao tác</f:facet>
+                        <h:commandButton value="Xóa" action="#{sachBean.delete(s.id)}" class="btn btn-danger btn-sm" />
+                    </h:column>
+                </h:dataTable>
+            </div>
+        </h:form>
+
+        <div class="mt-4 text-center">
+            <h:link outcome="sach-form" value="Thêm sách mới" class="btn btn-primary" />
+            <h:link outcome="index" value="Về trang chủ" class="btn btn-secondary ms-2" />
+        </div>
+    </div>
+</h:body>
+</html>

@@ -1,0 +1,53 @@
+<ui:composition template="/templates/layout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="jakarta.faces.facelets"
+                xmlns:h="jakarta.faces.html"
+                xmlns:f="jakarta.faces.core">
+
+    <ui:define name="title">Danh Sách Sinh Viên</ui:define>
+
+    <ui:define name="content">
+        <h2 class="text-center text-success mb-4">Danh Sách Sinh Viên</h2>
+        <h:messages globalOnly="true" class="alert alert-success" />
+
+        <!-- Form tìm kiếm sinh viên (Bài 10) -->
+        <h:form class="mb-3">
+            <div class="row g-2 justify-content-center">
+                <div class="col-md-6">
+                    <h:inputText value="#{sinhVienBean.keyword}" class="form-control" placeholder="Nhập họ tên hoặc lớp cần tìm..." />
+                </div>
+                <div class="col-md-2">
+                    <h:commandButton value="Tìm kiếm" action="#{sinhVienBean.search}" class="btn btn-info w-100 text-white" />
+                </div>
+            </div>
+        </h:form>
+
+        <h:form>
+            <div class="table-responsive shadow-sm rounded">
+                <h:dataTable value="#{sinhVienBean.danhSach}" var="sv" class="table table-hover table-bordered align-middle mb-0 bg-white">
+                    <h:column><f:facet name="header">ID</f:facet>#{sv.id}</h:column>
+                    <h:column><f:facet name="header">Mã SV</f:facet>#{sv.maSinhVien}</h:column>
+                    <h:column><f:facet name="header">Họ tên</f:facet>#{sv.hoTen}</h:column>
+                    <h:column><f:facet name="header">Email</f:facet>#{sv.email}</h:column>
+                    <h:column><f:facet name="header">Lớp</f:facet>
+                        <span class="badge bg-info text-dark">#{sv.lop}</span>
+                    </h:column>
+
+                    <!-- Cột Thao tác: Sửa và Xóa -->
+                    <h:column>
+                        <f:facet name="header">Thao tác</f:facet>
+                        <div class="d-flex gap-2">
+                            <h:commandButton value="Sửa" action="#{sinhVienBean.edit(sv)}" class="btn btn-warning btn-sm" />
+                            <h:commandButton value="Xóa" action="#{sinhVienBean.delete(sv.id)}" class="btn btn-danger btn-sm" />
+                        </div>
+                    </h:column>
+                </h:dataTable>
+            </div>
+        </h:form>
+
+        <div class="mt-4 text-center">
+            <h:link outcome="sinhvien-form" value="Thêm sinh viên mới" class="btn btn-primary" />
+            <h:link outcome="index" value="Về trang chủ" class="btn btn-secondary ms-2" />
+        </div>
+    </ui:define>
+</ui:composition>

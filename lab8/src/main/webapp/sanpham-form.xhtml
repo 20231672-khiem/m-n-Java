@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html">
+<h:head>
+    <title>Nhập Sản Phẩm Mới</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+</h:head>
+<h:body class="bg-dark text-light">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card bg-secondary text-light shadow-lg border-warning">
+                    <div class="card-header bg-warning text-dark fw-bold text-center">
+                        <h4 class="mb-0">Nhập Sản Phẩm Mới</h4>
+                    </div>
+                    <div class="card-body">
+                        <h:form>
+                            <div class="mb-3">
+                                <label class="form-label">Tên Sản Phẩm:</label>
+                                <h:inputText id="ten" value="#{sanPhamBean.sanPham.tenSanPham}" class="form-control" />
+                                <h:message for="ten" class="text-warning small mt-1 d-block" />
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Đơn Giá (VNĐ):</label>
+                                <h:inputText id="gia" value="#{sanPhamBean.sanPham.gia}" class="form-control" />
+                                <h:message for="gia" class="text-warning small mt-1 d-block" />
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Số Lượng:</label>
+                                <h:inputText id="sl" value="#{sanPhamBean.sanPham.soLuong}" class="form-control" />
+                                <h:message for="sl" class="text-warning small mt-1 d-block" />
+                            </div>
+
+                            <div class="d-grid mt-4">
+                                <h:commandButton value="Lưu Sản Phẩm" action="#{sanPhamBean.save}" class="btn btn-warning text-dark fw-bold" />
+                            </div>
+                        </h:form>
+                    </div>
+                    <div class="card-footer text-center">
+                        <h:link outcome="sanpham-list" value="Xem kho hàng" class="text-warning text-decoration-none" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</h:body>
+</html>
